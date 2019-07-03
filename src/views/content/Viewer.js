@@ -1,19 +1,20 @@
 import React from 'react';
-import { Card, CardText, CardBody, CardTitle, CardSubtitle, Button } from 'reactstrap';
+import { Row, Col, Card, CardText, CardBody } from 'reactstrap';
+import User from '../../assets/img/User/f_f_event_97_s512_f_event_97_0bg.png';
 
 class Viewer extends React.Component {
     render() {
         return(
             <div className="Viewer">
-                <p className="content-title">Account Viewer</p>
                 <Card>
-                    Chanel Name
+                    <Row><Col>
+                        <img src={User} alt="User" height="38px"/>&nbsp;kazuki
+                        <i className="fa fa-arrow-right"></i>
+                        <img src={User} alt="User" height="38px"/>&nbsp;kazuki
+                    </Col></Row>
                     <hr />
                     <CardBody>
-                        <CardTitle>Card title</CardTitle>
-                        <CardSubtitle>Card subtitle</CardSubtitle>
                         <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                        <Button>Button</Button>
                     </CardBody>
                 </Card>
             </div>

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Card, CardText, CardBody, Button } from 'reactstrap';
 import { FormGroup, Input } from 'reactstrap';
-import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'; 
+import User from '../../assets/img/User/f_f_event_97_s512_f_event_97_0bg.png';
 
 class Post extends React.Component {
     constructor(props) {
@@ -23,10 +24,12 @@ class Post extends React.Component {
             <div className="Post">
                 <Card>
                     <CardBody>
-                        <CardText>投稿機能を使って、褒めたい人の行動をみんなに紹介しよう！</CardText>
+                        <CardText>褒めたい人の行動をみんなに紹介しよう！</CardText>
                         <FormGroup>
                             <Input type="textarea" name="text" id="exampleText" rows="4"/>
                         </FormGroup>
+
+                        <img src={User} alt="User" height="38px"/>&nbsp;
 
                         <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} >
                             <DropdownToggle caret>
@@ -36,8 +39,6 @@ class Post extends React.Component {
                                 <DropdownItem>taro</DropdownItem>
                                 <DropdownItem>jiro</DropdownItem>
                                 <DropdownItem>saburo</DropdownItem>
-                                <DropdownItem divider />
-                                <DropdownItem>Another Action</DropdownItem>
                             </DropdownMenu>
                         </ButtonDropdown>
 

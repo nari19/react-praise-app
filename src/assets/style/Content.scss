@@ -14,4 +14,7 @@ main {
             padding: 0;
         }
     }
+    & .Viewer {
+        .fa-arrow-right { margin: 0 8px; }
+    }
 }

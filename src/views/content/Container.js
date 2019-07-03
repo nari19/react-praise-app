@@ -9,6 +9,9 @@ class Container extends React.Component {
         return(
             <main>
                 <Post />
+                <p className="content-title">みんなの投稿</p>
+                <Viewer />
+                <Viewer />
                 <Viewer />
             </main>
         );
