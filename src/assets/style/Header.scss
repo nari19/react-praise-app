@@ -1,45 +1,14 @@
 header {
     background-color: #93b5b3;
-    font-family: FontAwesome;
+    font-size: 1.5em;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 100;
     & .container {
         & .row {
-            & .column {
+            & .col {
                 margin: 12px 0;
-                & .icon {
-                    font-size: 38px;
-                    color: white;
-                }
-                & .form-control {
-                    padding: 0 1em;
-                    -webkit-font-smoothing: antialiased;
-                    -moz-osx-font-smoothing: grayscale;
-                }
-                & .menus {
-                    display: flex;
-                    justify-content: space-around;
-                    & .menu-wrapper {
-                        width: 38px;
-                        border-radius: 50%;
-                        cursor: pointer;
-                        &:hover {
-                            background-color: #e6282d;
-                        }
-                        & a {
-                            text-decoration: none;
-                            & .menu {
-                            display: block;
-                            font-size: 24px;
-                            text-align: center;
-                            line-height: 38px;
-                            color: white;
-                        }
-                        }
-                    }
-                }
             }
         }
     }
