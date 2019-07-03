@@ -9,12 +9,13 @@ class Viewer extends React.Component {
                 <Card>
                     <Row><Col>
                         <img src={User} alt="User" height="38px"/>&nbsp;kazuki
-                        <i className="fa fa-arrow-right"></i>
+                        <i className="fa fa-arrow-right secondary"></i>
                         <img src={User} alt="User" height="38px"/>&nbsp;kazuki
                     </Col></Row>
                     <hr />
                     <CardBody>
-                        <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
+                        <CardText>今日も元気にお仕事なさってますね。こっちまで明るい気持ちになります!</CardText>
+                        <CardText className="pull-right text-muted h6">2019/04/23 11:51</CardText>
                     </CardBody>
                 </Card>
             </div>

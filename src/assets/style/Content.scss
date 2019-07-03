@@ -1,7 +1,7 @@
 main {
     padding: 30px;
     max-width: 1280px;
-    margin: 84px auto 0 auto; // 64px => ヘッダーの高さ
+    margin: 75px auto 0 auto;
     & .content-title {
         font-size: 1.3em;
         font-weight: bold;
@@ -15,6 +15,6 @@ main {
         }
     }
     & .Viewer {
-        .fa-arrow-right { margin: 0 8px; }
+        .fa-arrow-right { margin: 0 8px; color: #6c757d; }
     }
 }

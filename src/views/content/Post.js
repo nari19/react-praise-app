@@ -33,7 +33,7 @@ class Post extends React.Component {
 
                         <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} >
                             <DropdownToggle caret>
-                                紹介する相手を選ぶ
+                                褒める相手を選ぶ
                             </DropdownToggle>
                             <DropdownMenu>
                                 <DropdownItem>taro</DropdownItem>
