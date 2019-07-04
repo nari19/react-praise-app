@@ -32,8 +32,8 @@ class Header extends React.Component {
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
-                            <NavItem><NavLink disabled href="#">拍手できる: 70</NavLink></NavItem>
-                            <NavItem><NavLink disabled href="#">拍手された: 0</NavLink></NavItem>
+                            <NavItem><NavLink disabled href="#">拍手できる数: 70</NavLink></NavItem>
+                            <NavItem><NavLink disabled href="#">拍手された数: 0</NavLink></NavItem>
 
                             <UncontrolledDropdown nav inNavbar>
                                 <DropdownToggle nav caret>ユーザーの切り替え</DropdownToggle>
