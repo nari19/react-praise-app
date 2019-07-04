@@ -1,12 +1,7 @@
 import React from 'react';
 import '../assets/style/Header.scss';
-
-import {
-    Collapse,Navbar,NavbarToggler,NavbarBrand,Nav,NavItem,NavLink,
-    UncontrolledDropdown,DropdownToggle,DropdownMenu,DropdownItem 
-} from 'reactstrap';
-
-import User from '../assets/img/User/f_f_event_97_s512_f_event_97_0bg.png';
+import { Collapse,Navbar,NavbarToggler,NavbarBrand,Nav,NavItem,NavLink,UncontrolledDropdown,DropdownToggle,DropdownMenu,DropdownItem } from 'reactstrap'; 
+import User from '../assets/img/User/10.png';
 
 class Header extends React.Component {
     constructor(props) {

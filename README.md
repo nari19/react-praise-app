@@ -45,3 +45,4 @@ $ npm start
 - "reactstrap": "^8.0.0"
 - "redux": "^4.0.1"
 - "node-sass": "^4.12.0"
+- "react-redux": "^7.1.0",

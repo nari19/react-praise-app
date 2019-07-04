@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardText, CardBody, Button } from 'reactstrap';
 import { FormGroup, Input } from 'reactstrap';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'; 
-import User from '../../assets/img/User/f_f_event_97_s512_f_event_97_0bg.png';
+import User from '../../assets/img/User/10.png';
 
 class Post extends React.Component {
     constructor(props) {
@@ -13,7 +13,6 @@ class Post extends React.Component {
             dropdownOpen: false
         };
         }
-
         toggle() {
         this.setState({
             dropdownOpen: !this.state.dropdownOpen

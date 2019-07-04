@@ -1,7 +1,6 @@
 import React from 'react';
 import { Row, Col, Card, CardText, CardBody } from 'reactstrap';
-import User from '../../assets/img/User/f_f_event_97_s512_f_event_97_0bg.png';
-
+import User from '../../assets/img/User/10.png';
 class Viewer extends React.Component {
     render() {
         return(
