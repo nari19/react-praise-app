@@ -19,7 +19,7 @@ class Post extends React.Component {
     }
     render() {
         // this.props.userInfo.send 等の記述を userInfo.send で短く記述
-        const { users, userInfo, postAdd } = this.props;
+        const { users, userInfo, changeReceiveUser, postAdd } = this.props;
         // メッセージを受け取るユーザ画像のパス
         const receiveUserImg = require('../../assets/img/User/' + users[userInfo.receive].img);
 
@@ -43,7 +43,7 @@ class Post extends React.Component {
                                 {/* this.props.usersの配列から名前と画像を取り出す */}
                                     {users.map((user, index) => {
                                         const choiceUser = require('../../assets/img/User/' + users[index].img);
-                                        return <DropdownItem key={index} onClick={() => postAdd(index)}>
+                                        return <DropdownItem key={index} onClick={() => changeReceiveUser(index)}>
                                                 <img src={choiceUser} alt="User" height="25px"/>&nbsp;&nbsp;{user.name}
                                                </DropdownItem>
                                 })}
@@ -52,7 +52,7 @@ class Post extends React.Component {
 
                         {/* 投稿ボタン */}
                         <Button type="submit" name="postForm" className="pull-right"
-                                onClick={() => postAdd()}>投稿</Button>
+                                onClick={() => postAdd(userInfo.send, userInfo.receive)}>投稿</Button>
                     </CardBody>
                 </Card>
             </div>
