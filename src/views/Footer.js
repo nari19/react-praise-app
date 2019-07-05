@@ -1,6 +1,7 @@
 import React from 'react';
 import '../assets/style/Footer.scss';
 
+
 class Footer extends React.Component {
     render() {
         return(

@@ -5,9 +5,11 @@ import Header from './views/Header.js';
 import Container from './views/content/Container';
 import Footer from './views/Footer.js';
 
+
 class App extends React.Component {
   constructor() {
     super()
+
     this.state = {
       // ユーザー情報 [id、名前、画像、保持ポイント、獲得ポイント]
       users: [

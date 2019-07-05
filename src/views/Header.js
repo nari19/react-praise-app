@@ -2,19 +2,19 @@ import React from 'react';
 import '../assets/style/Header.scss';
 import { Collapse,Navbar,NavbarToggler,NavbarBrand,Nav,NavItem,NavLink,UncontrolledDropdown,DropdownToggle,DropdownMenu,DropdownItem } from 'reactstrap'; 
 
+
 class Header extends React.Component {
     constructor(props) {
         super(props);
 
+        // ユーザ切り替え ドロップダウンメニュー
+        this.state = { isOpen: false };
         this.toggle = this.toggle.bind(this);
-        this.state = {
-            isOpen: false   // ユーザ切り替え ドロップダウンメニュー
-        };
-        }
-        toggle() {
-        this.setState({
-            isOpen: !this.state.isOpen  // ドロップダウンメニューを開く・閉じる
-        });
+    }
+
+    // ドロップダウンメニューを開く・閉じる
+    toggle() {
+        this.setState({ isOpen: !this.state.isOpen });
     }
 
     render() {

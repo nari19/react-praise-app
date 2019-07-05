@@ -1,22 +1,21 @@
 import React from 'react';
-import { Card, CardText, CardBody, Button } from 'reactstrap';
-import { FormGroup, Input } from 'reactstrap';
-import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'; 
+import { Card, CardText, CardBody, FormGroup, Input, Button, ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'; 
+
 
 class Post extends React.Component {
     constructor(props) {
         super(props);
 
+        // ユーザ切り替え ドロップダウンメニュー
+        this.state = { dropdownOpen: false };
         this.toggle = this.toggle.bind(this);
-        this.state = {
-            dropdownOpen: false
-        };
-        }
-        toggle() {
-        this.setState({
-            dropdownOpen: !this.state.dropdownOpen
-        });
     }
+
+    // ドロップダウンメニューを開く・閉じる
+    toggle() {
+        this.setState({ dropdownOpen: !this.state.dropdownOpen });
+    }
+
     render() {
         // this.props.userInfo.send 等の記述を userInfo.send で短く記述
         const { users, userInfo, changeReceiveUser, postAdd } = this.props;

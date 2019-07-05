@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col, Card, CardText, CardBody } from 'reactstrap';
 
+
 class Viewer extends React.Component {
     render() {
         // this.propsの省略

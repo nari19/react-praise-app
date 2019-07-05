@@ -4,9 +4,11 @@ import '../../assets/style/Content.scss';
 import Viewer from './Viewer.js';
 import Post from './Post.js';
 
+
 class Container extends React.Component {
     constructor(props){
         super(props)
+
         // 投稿情報 [内容、送る相手、受け取る相手、日付、ポイント]
         this.state = {
             posts: []

@@ -4,14 +4,10 @@ header {
     width: 100%;
     z-index: 100;
     border-bottom: 1px solid rgb(230, 229, 229);
-    & .container {
-        & .row {
-            & .col {
-                margin: 12px 0;
-            }
+    & .navbar {
+        padding: 8px 40px;
+        & .nav-link {
+            color: #212529!important;
         }
-    }
-    & .nav-link {
-        color: #212529!important;
     }
 }
