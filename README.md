@@ -37,12 +37,10 @@ $ npm start
 
 ## 使用ライブラリ
 
-- "bootstrap": "^4.3.1"
-- "font-awesome": "^4.7.0"
 - "react": "^16.8.6"
 - "react-dom": "^16.8.6"
 - "react-scripts": "3.0.1"
 - "reactstrap": "^8.0.0"
-- "redux": "^4.0.1"
+- "bootstrap": "^4.3.1"
+- "font-awesome": "^4.7.0"
 - "node-sass": "^4.12.0"
-- "react-redux": "^7.1.0",
