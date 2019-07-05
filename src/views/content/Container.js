@@ -17,9 +17,9 @@ class Container extends React.Component {
       }
 
       // 投稿をpostsステートに追加
-      postAdd(send, receive) {
+      postAdd(postContent, send, receive) {
         // Postコンポーネントから受け取ったデータをオブジェクトに挿入して、stateのpostsに配列で追加
-        this.state.posts.push({content: "aaa", send: send, receive: receive, date: "2019/5/4 18:21", praise: 0})
+        this.state.posts.push({content: postContent, send: send, receive: receive, date: "2019/5/4 18:21", praise: 0})
         // setStateを使ってstateを上書き
         this.setState({posts: this.state.posts})
       }

@@ -6,9 +6,12 @@ class Post extends React.Component {
     constructor(props) {
         super(props);
 
-        // ユーザ切り替え ドロップダウンメニュー
-        this.state = { dropdownOpen: false };
+        this.state = { 
+            dropdownOpen: false,  // ユーザ切り替え ドロップダウンメニュー
+            postContent: ""       // 投稿フォームの内容
+        };
         this.toggle = this.toggle.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     // ドロップダウンメニューを開く・閉じる
@@ -16,9 +19,25 @@ class Post extends React.Component {
         this.setState({ dropdownOpen: !this.state.dropdownOpen });
     }
 
+    // 投稿フォームに変更があったらステートを更新する
+    handleChange(e) {
+        this.setState({ postContent: e.target.value });
+    }
+
+    // 投稿ボタンが押されたらpostContentステートの中身を消去し、propsのpostAdd関数を実行する
+    sendDate() {
+        const { postAdd, userInfo } = this.props;
+        const { postContent } = this.state;
+        postAdd(postContent, userInfo.send, userInfo.receive);
+        this.setState({ postContent: ""});
+    }
+
     render() {
-        // this.props.userInfo.send 等の記述を userInfo.send で短く記述
-        const { users, userInfo, changeReceiveUser, postAdd } = this.props;
+        // this.propsの記述を省略
+        const { users, userInfo, changeReceiveUser } = this.props;
+        // this.stateの記述を省略
+        const { postContent, dropdownOpen } = this.state;
+
         // メッセージを受け取るユーザ画像のパス
         const receiveUserImg = require('../../assets/img/User/' + users[userInfo.receive].img);
 
@@ -29,14 +48,14 @@ class Post extends React.Component {
                         {/* 投稿フォーム */}
                         <CardText>褒めたい人の行動をみんなに紹介しよう！</CardText>
                         <FormGroup>
-                            <Input type="textarea" name="postForm" rows="4"/>
+                            <Input type="textarea" name="text" rows="4" value={postContent} onChange={this.handleChange}/>
                         </FormGroup>
 
                         {/* 送る相手を選択 */}
                         <img src={receiveUserImg} alt="User" height="38px"/>&nbsp;
-                        <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} >
+                        <ButtonDropdown isOpen={dropdownOpen} toggle={this.toggle} >
                             <DropdownToggle caret>
-                                褒める相手を選ぶ
+                                褒める相手[ {users[userInfo.receive].name} ]
                             </DropdownToggle>
                             <DropdownMenu>
                                 {/* this.props.usersの配列から名前と画像を取り出す */}
@@ -50,13 +69,14 @@ class Post extends React.Component {
                         </ButtonDropdown>
 
                         {/* 投稿ボタン */}
-                        <Button type="submit" name="postForm" className="pull-right"
-                                onClick={() => postAdd(userInfo.send, userInfo.receive)}>投稿</Button>
+                        <Button type="submit" className="pull-right"
+                                onClick={() => this.sendDate()}>投稿</Button>
                     </CardBody>
                 </Card>
             </div>
         );
     }
 }
+// onClick={() => postAdd(postContent, userInfo.send, userInfo.receive)}>投稿</Button>
 
 export default Post;
