@@ -5,7 +5,7 @@ import { Row, Col, Card, CardText, CardBody } from 'reactstrap';
 class Viewer extends React.Component {
     render() {
         // this.propsの省略
-        const { users, posts } = this.props;
+        const { users, posts, clickPrise } = this.props;
         return(
             <div className="Viewer">
                 {/* this.props.postsの配列から中身を取り出す */}
@@ -29,7 +29,7 @@ class Viewer extends React.Component {
                             <CardText>{post.content}</CardText>
 
                             {/* 賞賛ボタン */}
-                            <i className="fa fa-sign-language h3"></i>&nbsp;&nbsp;
+                            <i className="fa fa-sign-language h3" onClick={() => clickPrise(index)}></i>&nbsp;&nbsp;
                             <span className="h5 text-dark">{post.praise}</span>
 
                             {/* 日付 */}

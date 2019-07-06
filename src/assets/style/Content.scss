@@ -1,6 +1,7 @@
 main {
     padding: 30px;
     max-width: 1280px;
+    min-height: 800px;
     margin: 75px auto 0 auto;
     & .content-title {
         font-weight: bold;
@@ -16,6 +17,12 @@ main {
     & .Viewer .card { padding-bottom: 5px; }
     & .Viewer {
         .fa { color: #6c757d; }
+        // 矢印の左右にスペースを空ける
         .fa-arrow-right { margin: 0 8px; }
+        // 賞賛ボタンのマウスホバー設定
+        .fa-sign-language:hover {
+            cursor: pointer;
+            color: #5a6167;
+        }
     }
 }
