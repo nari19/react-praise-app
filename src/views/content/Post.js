@@ -64,6 +64,8 @@ class Post extends React.Component {
                                         const choiceUser = require('../../assets/img/User/' + users[index].img);
                                         return <DropdownItem key={index} onClick={() => changeReceiveUser(index)}>
                                                 <img src={choiceUser} alt="User" height="25px"/>&nbsp;&nbsp;{user.name}
+                                                {/* ポイントの表示 */}
+                                                &nbsp;&nbsp;{user.retention} | {user.praise}
                                                </DropdownItem>
                                 })}
                             </DropdownMenu>

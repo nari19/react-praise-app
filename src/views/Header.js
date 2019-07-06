@@ -50,6 +50,8 @@ class Header extends React.Component {
                                         const choiceUser = require('../assets/img/User/' + users[index].img);
                                         return <DropdownItem key={index} onClick={() => changeSendUser(index)}>
                                                 <img src={choiceUser} alt="User" height="25px"/>&nbsp;&nbsp;{user.name}
+                                                {/* ポイントの表示 */}
+                                                &nbsp;&nbsp;{user.retention} | {user.praise}
                                                </DropdownItem>
                                     })}
                                 </DropdownMenu>

@@ -38,6 +38,10 @@ class Container extends React.Component {
         const changedState = {...this.state};
         changedState.posts[i].praise += 1;
         this.setState(changedState);
+       
+        // 賞賛した相手とされた相手のポイントを変更
+        const receive = changedState.posts[i].receive
+        this.props.changeUsersPoint(receive);
     }
 
     render() {
