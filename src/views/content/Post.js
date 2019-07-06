@@ -28,6 +28,7 @@ class Post extends React.Component {
     sendDate() {
         const { postAdd, userInfo } = this.props;
         const { postContent } = this.state;
+        console.log(Date.now());
         postAdd(postContent, userInfo.send, userInfo.receive);
         this.setState({ postContent: ""});
     }
@@ -77,6 +78,5 @@ class Post extends React.Component {
         );
     }
 }
-// onClick={() => postAdd(postContent, userInfo.send, userInfo.receive)}>投稿</Button>
 
 export default Post;

@@ -3,11 +3,19 @@
 ## 実行コマンド
 
 ```
+// ソースコードをローカルにダウンロード
+git clone https://github.com/f81/intern2021_Summer_Naridukakazuki.git
+
+// プロジェクトに移動
+cd intern2021_Summer_Naridukakazuki/
+
 // node_moduleインストール
 $ npm i
 
 // サーバの起動
 $ npm start
+
+=> ブラウザから http://localhost:3000/ にアクセス
 ```
 
 ## ファイル構造

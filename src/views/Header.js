@@ -28,7 +28,7 @@ class Header extends React.Component {
                 <Navbar color="light" light expand="md">
 
                     {/* ヘッダー左側 */}
-                    <NavbarBrand href="/">
+                    <NavbarBrand disabled>
                         <img src={sendUserImg} alt="User" height="45px"/>&nbsp;&nbsp;{users[userInfo.send].name}
                     </NavbarBrand>
 

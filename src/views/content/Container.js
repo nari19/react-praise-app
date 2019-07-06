@@ -10,16 +10,23 @@ class Container extends React.Component {
         super(props)
 
         // 投稿情報 [内容、送る相手、受け取る相手、日付、ポイント]
-        this.state = {
-            posts: []
-        }
+        this.state = { posts: []}
         this.postAdd = this.postAdd.bind(this)
       }
 
       // 投稿をpostsステートに追加
       postAdd(postContent, send, receive) {
-        // Postコンポーネントから受け取ったデータをオブジェクトに挿入して、stateのpostsに配列で追加
-        this.state.posts.push({content: postContent, send: send, receive: receive, date: "2019/5/4 18:21", praise: 0})
+        // 日時の取得
+        const now = new Date();
+        const Year = now.getFullYear();
+        const Month = now.getMonth()+1;
+        const Date_a = now.getDate();
+        const Hour = now.getHours();
+        const Min = now.getMinutes();
+        const newDate = Year + "/" + Month + "/" + Date_a + " " + Hour + ":" + Min;
+
+        // Postコンポーネントから受け取ったデータをオブジェクトに挿入して、stateのpostsに配列に追加
+        this.state.posts.unshift({content: postContent, send: send, receive: receive, date: newDate, praise: 0})
         // setStateを使ってstateを上書き
         this.setState({posts: this.state.posts})
       }
