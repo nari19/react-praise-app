@@ -38,8 +38,8 @@ class Header extends React.Component {
                         <Nav className="ml-auto" navbar>
 
                             {/* ユーザ保持ポイント */}
-                            <NavItem><NavLink disabled href="#">拍手できる数: {users[userInfo.send].retention}</NavLink></NavItem>
-                            <NavItem><NavLink disabled href="#">拍手された数: {users[userInfo.send].praise}</NavLink></NavItem>
+                            <NavItem><NavLink disabled href="#">拍手できる: {users[userInfo.send].retention}</NavLink></NavItem>
+                            <NavItem><NavLink disabled href="#">拍手された: {users[userInfo.send].praise}</NavLink></NavItem>
 
                             {/* ドロップダウンメニュー */}
                             <UncontrolledDropdown nav inNavbar>

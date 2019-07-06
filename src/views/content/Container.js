@@ -9,10 +9,14 @@ class Container extends React.Component {
     constructor(props){
         super(props)
 
-        // 投稿情報 [内容、送る相手、受け取る相手、日付、ポイント]
-        this.state = { posts: [{content: "postContent", send: 3, receive: 4, date: "2019/3/7 16:21", praise: 0}]}
+        this.state = { 
+            // 投稿情報 [content: 内容、send: 送る相手、receive; 受け取る相手、date; 日付、praise: ポイント]
+            posts: [{content: "postContent", send: 3, receive: 4, date: "2019/3/7 16:21", praise: []}],
+            // 拍手一覧情報 [{num: 拍手した数, user: 拍手した人}]
+            clapInfoData: []
+        }
         this.postAdd = this.postAdd.bind(this)
-        this.clickPrise = this.clickPrise.bind(this)
+        this.clickPraise = this.clickPraise.bind(this)
     }
 
     // 投稿をpostsステートに追加
@@ -27,28 +31,45 @@ class Container extends React.Component {
         const newDate = Year + "/" + Month + "/" + Date_a + " " + Hour + ":" + Min;
 
         // Postコンポーネントから受け取ったデータをオブジェクトに挿入して、stateのpostsに配列に追加
-        this.state.posts.unshift({content: postContent, send: send, receive: receive, date: newDate, praise: 0})
+        this.state.posts.unshift({content: postContent, send: send, receive: receive, date: newDate, praise: []})
         // setStateを使ってstateを上書き
         this.setState({posts: this.state.posts})
     }
 
     // 賞賛ボタンを押したときに発火
-    clickPrise(i) {
+    clickPraise(i, sendUser) {
         // スプレッド構文でstateの値を一部分だけ変更する https://teratail.com/questions/118307
         const changedState = {...this.state};
-        changedState.posts[i].praise += 1;
+        changedState.posts[i].praise.push(sendUser);
         this.setState(changedState);
        
         // 賞賛した相手とされた相手のポイントを変更
+        const send = changedState.posts[i].send
         const receive = changedState.posts[i].receive
-        this.props.changeUsersPoint(receive);
+        this.props.changeUsersPoint(send, receive);
+
+
+        // 配列で格納している拍手のデータ(posts.praise)を連想配列に整形する
+        const { posts } = this.state;
+        const clapUniqArray = [...new Set(posts[i].praise)]; // 重複しない値を取り出す
+        const clapArray = [];
+        clapUniqArray.forEach(e => {
+            let count = posts[i].praise.filter(x => {return x===e}).length;  // 要素の数を数える
+            clapArray.push({ num: count, user: e});
+        });
+        clapArray.sort((a,b) => { //numキーで昇順ソート
+            if(a.num < b.num) return 1;
+            if(a.num > b.num) return -1;
+            return 0;
+        });
+        this.setState({clapInfoData: clapArray});
     }
 
     render() {
         // this.propsの省略
         const { users, userInfo, changeReceiveUser } = this.props;
         // this.stateの省略
-        const { posts } = this.state;
+        const { posts, clapInfoData } = this.state;
         return(
             <main>
                 {/* 投稿機能コンポーネント */}
@@ -59,7 +80,8 @@ class Container extends React.Component {
                 
                 {/* 投稿表示コンポーネント */}
                 <p className="content-title h5 text-dark">みんなの投稿</p>
-                <Viewer users={users} posts={posts} clickPrise={this.clickPrise}/>
+                <Viewer users={users} userInfo={userInfo} posts={posts}
+                        clapInfoData={clapInfoData} clickPraise={this.clickPraise}/>
             </main>
         );
     }
