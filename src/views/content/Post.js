@@ -28,9 +28,13 @@ class Post extends React.Component {
     sendDate() {
         const { postAdd, userInfo } = this.props;
         const { postContent } = this.state;
-        console.log(Date.now());
-        postAdd(postContent, userInfo.send, userInfo.receive);
-        this.setState({ postContent: ""});
+        // 5文字以上だったら、投稿
+        if(postContent.length > 5) {
+            postAdd(postContent, userInfo.send, userInfo.receive);
+            this.setState({ postContent: ""});
+        } else {
+            alert("5文字以上入力してください");
+        }
     }
 
     render() {

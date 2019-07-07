@@ -46,27 +46,28 @@ class Viewer extends React.Component {
                             <i className="fa fa-sign-language h3" onClick={() => clickPraise(index, userInfo.send)}></i>&nbsp;&nbsp;
                             {/* 拍手数 */}
                             <span className="h5 text-dark" id="clapOverlay">{post.praise.length}</span>
+                            {/* 拍手ユーザ一覧　オーバーレイ */}
+                            <Tooltip placement="right" isOpen={this.state.tooltipOpen} target="clapOverlay" toggle={this.toggle}>
+                                {/* this.props.posts.praiseの配列から名前と画像を取り出す */}
+                                {clapInfoData.map((clap, i) => {
+                                    const clapUser = require('../../assets/img/User/' + users[clap.user].img);
+                                    return <div key={i} className="clapList">
+                                        <img src={clapUser} alt="User" height="22px"/>
+                                        <span className="h6">
+                                            &nbsp;&nbsp;{users[clap.user].name}
+                                            {/* ポイントの表示 */}
+                                            &nbsp;&nbsp;{clap.num}
+                                        </span>
+                                    </div>
+                                })}
+                            </Tooltip>
                             
                             {/* 日付 */}
                             <CardText className="pull-right text-muted h6">{post.date}</CardText>
                         </CardBody>
                     </Card>
                 })}
-                {/* 拍手ユーザ一覧　オーバーレイ */}
-                <Tooltip placement="right" isOpen={this.state.tooltipOpen} target="clapOverlay" toggle={this.toggle}>
-                    {/* this.props.posts.praiseの配列から名前と画像を取り出す */}
-                    {clapInfoData.map((clap, i) => {
-                        const clapUser = require('../../assets/img/User/' + users[clap.user].img);
-                        return <div key={i}>
-                            <img src={clapUser} alt="User" height="22px"/>
-                            <span className="h6">
-                                &nbsp;&nbsp;{users[clap.user].name}
-                                {/* ポイントの表示 */}
-                                &nbsp;&nbsp;{clap.num}
-                            </span>
-                        </div>
-                    })}
-                </Tooltip>
+                
             </div>
         );
     }

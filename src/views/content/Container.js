@@ -13,7 +13,7 @@ class Container extends React.Component {
             // 投稿情報 [content: 内容、send: 送る相手、receive; 受け取る相手、date; 日付、praise: ポイント]
             posts: [{content: "postContent", send: 3, receive: 4, date: "2019/3/7 16:21", praise: []}],
             // 拍手一覧情報 [{num: 拍手した数, user: 拍手した人}]
-            clapInfoData: []
+            clapInfoData: [{num: 0, user: 1}, {num: 1, user: 3}, {num: 3, user: 2}]
         }
         this.postAdd = this.postAdd.bind(this)
         this.clickPraise = this.clickPraise.bind(this)
@@ -36,33 +36,40 @@ class Container extends React.Component {
         this.setState({posts: this.state.posts})
     }
 
-    // 賞賛ボタンを押したときに発火
+    // 拍手ボタンを押したときに発火
     clickPraise(i, sendUser) {
-        // スプレッド構文でstateの値を一部分だけ変更する https://teratail.com/questions/118307
-        const changedState = {...this.state};
-        changedState.posts[i].praise.push(sendUser);
-        this.setState(changedState);
-       
-        // 賞賛した相手とされた相手のポイントを変更
-        const send = changedState.posts[i].send
-        const receive = changedState.posts[i].receive
-        this.props.changeUsersPoint(send, receive);
-
-
-        // 配列で格納している拍手のデータ(posts.praise)を連想配列に整形する
         const { posts } = this.state;
-        const clapUniqArray = [...new Set(posts[i].praise)]; // 重複しない値を取り出す
-        const clapArray = [];
-        clapUniqArray.forEach(e => {
-            let count = posts[i].praise.filter(x => {return x===e}).length;  // 要素の数を数える
-            clapArray.push({ num: count, user: e});
-        });
-        clapArray.sort((a,b) => { //numキーで昇順ソート
-            if(a.num < b.num) return 1;
-            if(a.num > b.num) return -1;
-            return 0;
-        });
-        this.setState({clapInfoData: clapArray});
+        const { users } = this.props;
+        if(users[sendUser].retention === 0) {
+            alert("拍手できる数が0です");
+        } else if(posts[i].send === sendUser || posts[i].receive === sendUser) {
+            alert("投稿された人、投稿した人は拍手が出来ません")
+        } else {
+            // スプレッド構文でstateの値を一部分だけ変更する https://teratail.com/questions/118307
+            const changedState = {...this.state};
+            changedState.posts[i].praise.push(sendUser);
+            this.setState(changedState);
+        
+            // 賞賛した相手とされた相手のポイントを変更
+            const send = changedState.posts[i].send
+            const receive = changedState.posts[i].receive
+            this.props.changeUsersPoint(send, receive);
+
+
+            // 配列で格納している拍手のデータ(posts.praise)を連想配列に整形する
+            const clapUniqArray = [...new Set(posts[i].praise)]; // 重複しない値を取り出す
+            const clapArray = [];
+            clapUniqArray.forEach(e => {
+                let count = posts[i].praise.filter(x => {return x===e}).length;  // 要素の数を数える
+                clapArray.push({ num: count, user: e});
+            });
+            clapArray.sort((a,b) => { //numキーで昇順ソート
+                if(a.num < b.num) return 1;
+                if(a.num > b.num) return -1;
+                return 0;
+            });
+            this.setState({clapInfoData: clapArray});
+        }
     }
 
     render() {
