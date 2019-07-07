@@ -7,13 +7,28 @@ class Viewer extends React.Component {
         super(props);
 
         // 拍手ユーザ一覧　オーバーレイ
-        this.state = { tooltipOpen: false };
+        this.state = {
+            tooltipOpen: []
+        };
         this.toggle = this.toggle.bind(this);
     }
 
-    toggle() {
+    toggle(index) {
+        // マウスホバーした部分のフラグを変える
+        let toggleFlagArray = this.state.tooltipOpen;
+        toggleFlagArray[index] = !this.state.tooltipOpen[index];
         // オーバーレイの表示・非表示
-        this.setState({ tooltipOpen: !this.state.tooltipOpen })
+        this.setState({ tooltipOpen: toggleFlagArray });
+        // Contaier.jsのclapInfoDataステートを更新
+        this.props.onMouseOver(index);
+    }
+
+    // 投稿の数が変更された時に実行
+    componentDidUpdate(prevProps) {
+        if(this.props.postsCount !== prevProps.postsCount) {
+            this.state.tooltipOpen.unshift(false)
+            this.setState({tooltipOpen: this.state.tooltipOpen})
+        }
     }
 
     render() {
@@ -28,7 +43,6 @@ class Viewer extends React.Component {
                     const sendUserImg = require('../../assets/img/User/' + users[post.send].img);
                     // 受け取る相手の画像
                     const receiveUserImg = require('../../assets/img/User/' + users[post.receive].img);
-
                     return <Card key={index}>
                         <Row><Col>
                             {/* 送る相手 */}
@@ -45,9 +59,9 @@ class Viewer extends React.Component {
                             {/* 拍手ボタン */}
                             <i className="fa fa-sign-language h3" onClick={() => clickPraise(index, userInfo.send)}></i>&nbsp;&nbsp;
                             {/* 拍手数 */}
-                            <span className="h5 text-dark" id="clapOverlay">{post.praise.length}</span>
+                            <span className="h5 text-dark" id={"clapOverlay" + index}>{post.praise.length}</span>
                             {/* 拍手ユーザ一覧　オーバーレイ */}
-                            <Tooltip placement="right" isOpen={this.state.tooltipOpen} target="clapOverlay" toggle={this.toggle}>
+                            <Tooltip placement="right" isOpen={this.state.tooltipOpen[index]} target={"clapOverlay" + index} toggle={() => this.toggle(index)}>
                                 {/* this.props.posts.praiseの配列から名前と画像を取り出す */}
                                 {clapInfoData.map((clap, i) => {
                                     const clapUser = require('../../assets/img/User/' + users[clap.user].img);

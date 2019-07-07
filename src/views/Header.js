@@ -48,11 +48,13 @@ class Header extends React.Component {
                                     {/* this.props.usersの配列から名前と画像を取り出す */}
                                     {users.map((user, index) => {
                                         const choiceUser = require('../assets/img/User/' + users[index].img);
-                                        return <DropdownItem key={index} onClick={() => changeSendUser(index)}>
-                                                <img src={choiceUser} alt="User" height="25px"/>&nbsp;&nbsp;{user.name}
-                                                {/* ポイントの表示 */}
-                                                &nbsp;&nbsp;{user.retention} | {user.praise}
-                                               </DropdownItem>
+                                        if(userInfo.receive !== index) {  // 受け取る相手を送る相手と同じにしない
+                                            return <DropdownItem key={index} onClick={() => changeSendUser(index)}>
+                                                    <img src={choiceUser} alt="User" height="25px"/>&nbsp;&nbsp;{user.name}
+                                                    {/* ポイントの表示 */}
+                                                    &nbsp;&nbsp;{user.retention} | {user.praise}
+                                                </DropdownItem>
+                                        } else{ return null }
                                     })}
                                 </DropdownMenu>
                             </UncontrolledDropdown>

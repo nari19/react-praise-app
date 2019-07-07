@@ -22,7 +22,7 @@ class App extends React.Component {
         {name: "yoshiki", img: "60.png", retention: 100, praise: 0},
       ],
       // 送信ユーザーID, 受信ユーザーID
-      userInfo: { send: 0, receive: 1 }
+      userInfo: { send: 0, receive: 2 }
     }
     this.changeSendUser = this.changeSendUser.bind(this)
     this.changeReceiveUser = this.changeReceiveUser.bind(this)

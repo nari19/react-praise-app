@@ -29,9 +29,9 @@ class Post extends React.Component {
         const { postAdd, userInfo } = this.props;
         const { postContent } = this.state;
         // 5文字以上だったら、投稿
-        if(postContent.length > 5) {
+        if(postContent.length >= 5) {
             postAdd(postContent, userInfo.send, userInfo.receive);
-            this.setState({ postContent: ""});
+            this.setState({ postContent: ""});  // フォームを空にする
         } else {
             alert("5文字以上入力してください");
         }
@@ -66,11 +66,13 @@ class Post extends React.Component {
                                 {/* this.props.usersの配列から名前と画像を取り出す */}
                                     {users.map((user, index) => {
                                         const choiceUser = require('../../assets/img/User/' + users[index].img);
-                                        return <DropdownItem key={index} onClick={() => changeReceiveUser(index)}>
-                                                <img src={choiceUser} alt="User" height="25px"/>&nbsp;&nbsp;{user.name}
-                                                {/* ポイントの表示 */}
-                                                &nbsp;&nbsp;{user.retention} | {user.praise}
-                                               </DropdownItem>
+                                        if(userInfo.send !== index) {  // 受け取る相手を送る相手と同じにしない
+                                            return <DropdownItem key={index} onClick={() => changeReceiveUser(index)}>
+                                                    <img src={choiceUser} alt="User" height="25px"/>&nbsp;&nbsp;{user.name}
+                                                    {/* ポイントの表示 */}
+                                                    &nbsp;&nbsp;{user.retention} | {user.praise}
+                                                </DropdownItem>
+                                        } else { return null }
                                 })}
                             </DropdownMenu>
                         </ButtonDropdown>

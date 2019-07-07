@@ -11,12 +11,14 @@ class Container extends React.Component {
 
         this.state = { 
             // 投稿情報 [content: 内容、send: 送る相手、receive; 受け取る相手、date; 日付、praise: ポイント]
-            posts: [{content: "postContent", send: 3, receive: 4, date: "2019/3/7 16:21", praise: []}],
+            posts: [],
             // 拍手一覧情報 [{num: 拍手した数, user: 拍手した人}]
-            clapInfoData: [{num: 0, user: 1}, {num: 1, user: 3}, {num: 3, user: 2}]
+            clapInfoData: [],
+            postsCount: 0   // 投稿の数 投稿ボタンが押されたことを確認するために使う
         }
-        this.postAdd = this.postAdd.bind(this)
-        this.clickPraise = this.clickPraise.bind(this)
+        this.postAdd = this.postAdd.bind(this);
+        this.clickPraise = this.clickPraise.bind(this);
+        this.onMouseOver = this.onMouseOver.bind(this);
     }
 
     // 投稿をpostsステートに追加
@@ -34,6 +36,9 @@ class Container extends React.Component {
         this.state.posts.unshift({content: postContent, send: send, receive: receive, date: newDate, praise: []})
         // setStateを使ってstateを上書き
         this.setState({posts: this.state.posts})
+
+        // 投稿の数を取得 Viewer.js（componentDidUpdate）で利用
+        this.setState({postsCount: this.state.posts.length}) 
     }
 
     // 拍手ボタンを押したときに発火
@@ -54,29 +59,32 @@ class Container extends React.Component {
             const send = changedState.posts[i].send
             const receive = changedState.posts[i].receive
             this.props.changeUsersPoint(send, receive);
-
-
-            // 配列で格納している拍手のデータ(posts.praise)を連想配列に整形する
-            const clapUniqArray = [...new Set(posts[i].praise)]; // 重複しない値を取り出す
-            const clapArray = [];
-            clapUniqArray.forEach(e => {
-                let count = posts[i].praise.filter(x => {return x===e}).length;  // 要素の数を数える
-                clapArray.push({ num: count, user: e});
-            });
-            clapArray.sort((a,b) => { //numキーで昇順ソート
-                if(a.num < b.num) return 1;
-                if(a.num > b.num) return -1;
-                return 0;
-            });
-            this.setState({clapInfoData: clapArray});
         }
+    }
+
+    // 拍手の数にホバーした際、clapInfoDataステートを更新
+    onMouseOver(index) {
+        const { posts } = this.state;
+        // 配列で格納している拍手のデータ(posts.praise)を連想配列に整形する
+        const clapUniqArray = [...new Set(posts[index].praise)]; // 重複しない値を取り出す
+        const clapArray = [];
+        clapUniqArray.forEach(e => {
+            let count = posts[index].praise.filter(x => {return x===e}).length;  // 要素の数を数える
+            clapArray.push({ num: count, user: e});
+        });
+        clapArray.sort((a,b) => { //numキーで昇順ソート
+            if(a.num < b.num) return 1;
+            if(a.num > b.num) return -1;
+            return 0;
+        });
+        this.setState({clapInfoData: clapArray});
     }
 
     render() {
         // this.propsの省略
         const { users, userInfo, changeReceiveUser } = this.props;
         // this.stateの省略
-        const { posts, clapInfoData } = this.state;
+        const { posts, clapInfoData, postsCount } = this.state;
         return(
             <main>
                 {/* 投稿機能コンポーネント */}
@@ -87,7 +95,8 @@ class Container extends React.Component {
                 
                 {/* 投稿表示コンポーネント */}
                 <p className="content-title h5 text-dark">みんなの投稿</p>
-                <Viewer users={users} userInfo={userInfo} posts={posts}
+                <Viewer users={users} userInfo={userInfo} posts={posts} 
+                        postsCount={postsCount} onMouseOver={this.onMouseOver}
                         clapInfoData={clapInfoData} clickPraise={this.clickPraise}/>
             </main>
         );
