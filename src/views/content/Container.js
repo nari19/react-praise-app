@@ -21,6 +21,24 @@ class Container extends React.Component {
         this.onMouseOver = this.onMouseOver.bind(this);
     }
 
+    // 初回のみ実行
+    componentDidMount() {
+        if(localStorage.container){ // もし前回のデータがあったら、更新する
+          const saveDate = JSON.parse(localStorage.container);
+          this.setState({
+            posts: saveDate.posts,
+            clapInfoData: saveDate.clapInfoData,
+            postContent: saveDate.postContent
+          })
+        }
+      }
+    
+    // state,propsが変更されたら実行
+    componentDidUpdate() {
+        // ローカルストレージにステートの情報を保存
+        localStorage.setItem('container', JSON.stringify(this.state));
+    }
+
     // 投稿をpostsステートに追加
     postAdd(postContent, send, receive) {
         // 日時の取得

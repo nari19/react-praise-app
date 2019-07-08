@@ -13,6 +13,15 @@ class Viewer extends React.Component {
         this.toggle = this.toggle.bind(this);
     }
 
+    // 投稿の数が変更された時に実行
+    componentDidUpdate(prevProps) {
+        if(this.props.postsCount !== prevProps.postsCount) {
+            // 3回投稿された場合は、tooltipOpenステートに{false,false,false}が入る
+            const clapDefaultArray = new Array(this.props.postsCount).fill(false);
+            this.setState({tooltipOpen: clapDefaultArray})
+        }
+    }
+
     toggle(index) {
         // マウスホバーした部分のフラグを変える
         let toggleFlagArray = this.state.tooltipOpen;
@@ -21,14 +30,6 @@ class Viewer extends React.Component {
         this.setState({ tooltipOpen: toggleFlagArray });
         // Contaier.jsのclapInfoDataステートを更新
         this.props.onMouseOver(index);
-    }
-
-    // 投稿の数が変更された時に実行
-    componentDidUpdate(prevProps) {
-        if(this.props.postsCount !== prevProps.postsCount) {
-            this.state.tooltipOpen.unshift(false)
-            this.setState({tooltipOpen: this.state.tooltipOpen})
-        }
     }
 
     render() {
@@ -59,9 +60,9 @@ class Viewer extends React.Component {
                             {/* 拍手ボタン */}
                             <i className="fa fa-sign-language h3" onClick={() => clickPraise(index, userInfo.send)}></i>&nbsp;&nbsp;
                             {/* 拍手数 */}
-                            <span className="h5 text-dark" id={"clapOverlay" + index}>{post.praise.length}</span>
+                            <span className="h5 text-dark" id={"clapOverlay"+index}>{post.praise.length}</span>
                             {/* 拍手ユーザ一覧　オーバーレイ */}
-                            <Tooltip placement="right" isOpen={this.state.tooltipOpen[index]} target={"clapOverlay" + index} toggle={() => this.toggle(index)}>
+                            <Tooltip placement="right" isOpen={this.state.tooltipOpen[index]} target={"clapOverlay"+index} toggle={() => this.toggle(index)}>
                                 {/* this.props.posts.praiseの配列から名前と画像を取り出す */}
                                 {clapInfoData.map((clap, i) => {
                                     const clapUser = require('../../assets/img/User/' + users[clap.user].img);

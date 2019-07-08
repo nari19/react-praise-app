@@ -29,6 +29,23 @@ class App extends React.Component {
     this.changeUsersPoint = this.changeUsersPoint.bind(this)
   }
 
+  // 初回のみ実行
+  componentDidMount() {
+    if(localStorage.app){ // もし前回のデータがあったら、更新する
+      const saveDate = JSON.parse(localStorage.app);
+      this.setState({
+        users: saveDate.users,
+        userInfo: saveDate.userInfo
+      })
+    }
+  }
+
+  // state,propsが変更されたら実行
+  componentDidUpdate() {
+    // ローカルストレージにステートの情報を保存
+    localStorage.setItem('app', JSON.stringify(this.state));
+  }
+
   // 送信ユーザーの変更、更新
   changeSendUser(e) {
     // setStateを使って送信ユーザーを上書き
