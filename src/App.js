@@ -31,7 +31,7 @@ class App extends React.Component {
 
   // 初回のみ実行
   componentDidMount() {
-    if(localStorage.app){ // もし前回のデータがあったら、更新する
+    if(localStorage.app){ // もし前回のデータがあったら、ローカルストレージの値を取得し、更新する
       const saveDate = JSON.parse(localStorage.app);
       this.setState({
         users: saveDate.users,
@@ -40,7 +40,7 @@ class App extends React.Component {
     }
   }
 
-  // state,propsが変更されたら実行
+  // stateが変更されたら実行
   componentDidUpdate() {
     // ローカルストレージにステートの情報を保存
     localStorage.setItem('app', JSON.stringify(this.state));

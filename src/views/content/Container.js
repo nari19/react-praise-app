@@ -21,7 +21,7 @@ class Container extends React.Component {
 
     // 初回のみ実行
     componentDidMount() {
-        if(localStorage.container){ // もし前回のデータがあったら、更新する
+        if(localStorage.container){ // もし前回のデータがあったら、ローカルストレージの値を取得し、更新する
           const saveDate = JSON.parse(localStorage.container);
           this.setState({
             posts: saveDate.posts,
@@ -68,7 +68,7 @@ class Container extends React.Component {
         } else {
             // 要素の数を数える
             const praiseCount = posts[i].praise.filter(x => {return x===sendUser}).length;
-            if(praiseCount >= 15) {
+            if(praiseCount === 15) {
                 alert("１つの投稿に15回以上の拍手は出来ません");
             } else {
                 // スプレッド構文でstateの値を一部分だけ変更する https://teratail.com/questions/118307
