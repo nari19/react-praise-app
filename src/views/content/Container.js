@@ -10,10 +10,8 @@ class Container extends React.Component {
         super(props)
 
         this.state = { 
-            // 投稿情報 [content: 内容、send: 送る相手、receive; 受け取る相手、date; 日付、praise: ポイント]
-            posts: [],
-            // 拍手一覧情報 [{num: 拍手した数, user: 拍手した人}]
-            clapInfoData: [],
+            posts: [],  // 投稿情報 [content: 内容、send: 送る相手、receive; 受け取る相手、date; 日付、praise: ポイント]
+            clapInfoData: [],  // 拍手一覧情報 [{num: 拍手した数, user: 拍手した人}]
             postsCount: 0   // 投稿の数 投稿ボタンが押されたことを確認するために使う
         }
         this.postAdd = this.postAdd.bind(this);
@@ -68,15 +66,21 @@ class Container extends React.Component {
         } else if(posts[i].send === sendUser || posts[i].receive === sendUser) {
             alert("投稿された人、投稿した人は拍手が出来ません")
         } else {
-            // スプレッド構文でstateの値を一部分だけ変更する https://teratail.com/questions/118307
-            const changedState = {...this.state};
-            changedState.posts[i].praise.push(sendUser);
-            this.setState(changedState);
-        
-            // 賞賛した相手とされた相手のポイントを変更
-            const send = changedState.posts[i].send
-            const receive = changedState.posts[i].receive
-            this.props.changeUsersPoint(send, receive);
+            // 要素の数を数える
+            const praiseCount = posts[i].praise.filter(x => {return x===sendUser}).length;
+            if(praiseCount >= 15) {
+                alert("１つの投稿に15回以上の拍手は出来ません");
+            } else {
+                // スプレッド構文でstateの値を一部分だけ変更する https://teratail.com/questions/118307
+                const changedState = {...this.state};
+                changedState.posts[i].praise.push(sendUser);
+                this.setState(changedState);
+            
+                // 賞賛した相手とされた相手のポイントを変更
+                const send = changedState.posts[i].send
+                const receive = changedState.posts[i].receive
+                this.props.changeUsersPoint(send, receive);
+            }
         }
     }
 
