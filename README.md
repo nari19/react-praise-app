@@ -1,4 +1,4 @@
-# intern2021_Summer_Naridukakazuki
+# インターン課題　賞賛アプリ
 
 ## 起動のための手順
 
