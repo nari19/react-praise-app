@@ -4,10 +4,10 @@
 
 ```
 // ソースコードをローカルにダウンロード
-git clone https://github.com/f81/intern2021_Summer_Naridukakazuki.git
+git clone https://github.com/nari19/react-praise-app.git
 
 // プロジェクトに移動
-cd intern2021_Summer_Naridukakazuki/
+cd react-praise-app.git/
 
 // node_moduleインストール
 $ npm i
