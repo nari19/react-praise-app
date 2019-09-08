@@ -7,7 +7,7 @@
 git clone https://github.com/nari19/react-praise-app.git
 
 // プロジェクトに移動
-cd react-praise-app.git/
+cd react-praise-app/
 
 // node_moduleインストール
 $ npm i
