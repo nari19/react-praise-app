@@ -1,5 +1,9 @@
 # インターン課題　賞賛アプリ
 
+![アプリ画面](./src/assets/img/top.png)
+
+url: https://nari19.github.io/react-praise-app/
+
 ## 起動のための手順
 
 ```
