@@ -17,16 +17,13 @@ $ npm start
 
 => ブラウザから http://localhost:3000/ にアクセス
 
-------
+============================================================
 
-/// ビルド　=> buildディレクトリの作成
+/// ビルド　=> buildディレクトリの作成 => gh-pagesで公開するので”docs”と名前を変更する
 $ npm run build
 
-// デプロイ => github pagesにbuildディレクトリをpush
-$ npm run deploy
-
-// buildディレクトリのサーバー
-$ serve -s build
+// docsディレクトリのサーバー
+$ serve -s docs
 ```
 
 ## 自己採点(11項目/11項目)

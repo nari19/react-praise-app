@@ -17,8 +17,7 @@
     "start": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build": "react-scripts build && mv build docs",
-    "deploy": "gh-pages -d build"
+    "build": "react-scripts build && mv build docs"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -31,7 +30,6 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^2.1.1",
     "node-sass": "^4.12.0"
   }
 }
