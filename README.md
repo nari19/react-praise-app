@@ -16,6 +16,9 @@ $ npm i
 $ npm start
 
 => ブラウザから http://localhost:3000/ にアクセス
+
+// デプロイ => github pagesにbuildディレクトリをpush
+$ npm run deploy
 ```
 
 ## 自己採点(11項目/11項目)
