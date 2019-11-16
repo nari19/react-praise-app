@@ -17,8 +17,16 @@ $ npm start
 
 => ブラウザから http://localhost:3000/ にアクセス
 
+------
+
+/// ビルド　=> buildディレクトリの作成
+$ npm run build
+
 // デプロイ => github pagesにbuildディレクトリをpush
 $ npm run deploy
+
+// buildディレクトリのサーバー
+$ serve -s build
 ```
 
 ## 自己採点(11項目/11項目)
